@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  nginx:
+    container_name: my_nginx
+      #depends_on:
+      #- wordpress
+    build: ./requirements/nginx/
+      # volumes:
+      #- wp_volume:/var/www/html/
+    restart: always
+    networks:
+      - bridge-network
+    env_file:
+      - .env
+    ports:
+      - "443:443"
+
+
+networks:
+  bridge-network:
+    driver: bridge
